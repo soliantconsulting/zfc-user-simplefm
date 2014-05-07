@@ -1,10 +1,10 @@
 {
-    "name": "soliantconsulting/simple-fm-zfc-user-adapter",
-    "description": "A SimpleFM user adapter for File Maker databases",
+    "name": "soliantconsulting/zfc-user-simplefm",
+    "description": "A SimpleFM user adapter for the FileMaker database",
     "type": "library",
     "license": "MIT",
     "keywords": [
-        "file maker"
+        "filemaker"
     ],
     "homepage": "http://soliantconsulting.com",
     "authors": [

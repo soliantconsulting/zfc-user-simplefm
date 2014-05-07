@@ -40,19 +40,20 @@ class Module implements
     public function getServiceConfig()
     {
         return array(
+            'invokables' => array(
+                'zfcuser_register_form_hydrator'    => 'Zend\Stdlib\Hydrator\ArraySerializable',
+            ),
             'factories' => array(
-                'zfcuser_user_hydrator' => function ($sm) {
-                    $hydrator = new \Zend\Stdlib\Hydrator\ArraySerializable();
-                    return $hydrator;
-                },
-                'zfcuser_user_mapper' => function ($sm) {
+                'zfcuser_user_mapper' => function ($sm)
+                {
                     $options = $sm->get('zfcuser_module_options');
                     $mapper = new Mapper\User();
                     $mapper->setDbAdapter($sm->get('simplefm'));
+                    $mapper->setHydrator($sm->get('zfcuser_register_form_hydrator'));
                     $entityClass = $options->getUserEntityClass();
                     $mapper->setEntityPrototype(new $entityClass);
-                    $mapper->setHydrator($sm->get('zfcuser_user_hydrator'));
                     $mapper->setTableName($options->getTableName());
+                    $mapper->init(); # work around for constuctor params in ancestor
                     return $mapper;
                 },
             ),

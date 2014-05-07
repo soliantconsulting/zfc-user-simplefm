@@ -1,6 +1,6 @@
 <?php
 
-namespace ZfcUserSimpleFM\Mapper;
+namespace Soliant\ZfcUserSimpleFM\Mapper;
 
 #use ZfcBase\Mapper\AbstractDbMapper;
 use ZfcUser\Entity\UserInterface as UserEntityInterface;
@@ -44,7 +44,7 @@ class User implements UserInterface
 
     public function findByEmail($email)
     {
-        $dbAdapter = $this->getAdapter();
+        $dbAdapter = $this->getDbAdapter();
 
         $dbAdapter->setLayoutname($this->getTableName());
         $dbAdapter->setCommandarray(

@@ -1,6 +1,6 @@
 <?php
 
-namespace ZfcUserSimpleFM;
+namespace Soliant\ZfcUserSimpleFM;
 
 use Zend\Validator\InArray;
 
@@ -9,10 +9,17 @@ use Zend\EventManager\EventManager;
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\EventManagerAwareInterface;
 use Zend\Mvc\MvcEvent;
-use SimpleFMAuth\Mapper;
+use Soliant\ZfcUserSimpleFM\Mapper;
 use Soliant\SimpleFM;
 
-class Module implements EventManagerAwareInterface
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\ModuleManager\Feature\ServiceProviderInterface;
+
+class Module implements
+    AutoloaderProviderInterface,
+    ConfigProviderInterface,
+    ServiceProviderInterface
 {
     public function getConfig()
     {
@@ -24,7 +31,7 @@ class Module implements EventManagerAwareInterface
         return array(
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
-                    __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
+                    __NAMESPACE__ => __DIR__,
                 ),
             ),
         );
@@ -34,13 +41,6 @@ class Module implements EventManagerAwareInterface
     {
         return array(
             'factories' => array(
-                'simplefm' => function($sm)
-                {
-                    $config = $sm->get('Config');
-                    $adapter = new SimpleFM\Adapter($config['simple_fm_host_params']);
-
-                    return $adapter;
-                },
                 'zfcuser_user_hydrator' => function ($sm) {
                     $hydrator = new \Zend\Stdlib\Hydrator\ArraySerializable();
                     return $hydrator;
@@ -54,27 +54,6 @@ class Module implements EventManagerAwareInterface
                     $mapper->setHydrator($sm->get('zfcuser_user_hydrator'));
                     $mapper->setTableName($options->getTableName());
                     return $mapper;
-                },
-                'sfm_validation_adapter' => function ($sm) {
-                    $config = $sm->get('config');
-                    $hostParams = $config['sfm_auth']['simple_fm_host_params'];
-                    $dbAdapter = new \Soliant\SimpleFM\Adapter($hostParams);
-                    return $dbAdapter;
-                },
-                'sfm_auth_adapter' => function ($sm) {
-                    $config = $sm->get('config');
-                    $authConfig = $config['sfm_auth']['sfm_auth_params'];
-                    $validateSimpleFmAdapter = $sm->get('sfm_validation_adapter');
-                    return new \Soliant\SimpleFM\ZF2\Authentication\Adapter\SimpleFM($authConfig, $validateSimpleFmAdapter);
-                },
-                'sfm_auth_storage' => function ($sm) {
-                    $config = $sm->get('config');
-                    $namespace = $config['sfm_auth']['sfm_session_namespace'];
-                    return new \Soliant\SimpleFM\ZF2\Authentication\Storage\Session($namespace);
-                },
-                'sfm_auth_service' => function ($sm) {
-                    $storage = $sm->get('sfm_auth_storage');
-                    return new \Zend\Authentication\AuthenticationService($storage);
                 },
             ),
         );

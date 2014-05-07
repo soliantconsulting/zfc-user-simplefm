@@ -1,0 +1,27 @@
+{
+    "name": "soliantconsulting/simple-fm-zfc-user-adapter",
+    "description": "A SimpleFM user adapter for File Maker databases",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "file maker"
+    ],
+    "homepage": "http://soliantconsulting.com",
+    "authors": [
+        {
+            "name": "Tom Anderson",
+            "email": "tom.h.anderson@gmail.com",
+        }
+    ],
+    "require": {
+        "php": ">=5.4.3",
+    	"soliantconsulting/simplefm": "dev-master",
+        "zendframework/zendframework": ">=2.3.*",
+        "zf-commons/zfc-user": "dev-master",
+    },
+    "autoload": {
+        "psr-4": {
+            "Soliant\\ZfcUserSimpleFM": "src/"
+        }
+    }
+}

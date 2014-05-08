@@ -21,7 +21,7 @@
         "php": ">=5.4.3",
     	"soliantconsulting/simplefm": "dev-master",
         "zendframework/zendframework": "2.3.*",
-        "zf-commons/zfc-user": "0.1.*@dev"
+        "zf-commons/zfc-user": "1.*"
     },
     "autoload": {
         "psr-4": {

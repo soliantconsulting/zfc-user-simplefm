@@ -9,8 +9,6 @@ use Zend\EventManager\EventManagerAwareInterface;
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\EventManager;
 use Zend\Stdlib\Hydrator\HydratorInterface;
-
-#use ZfcBase\Mapper\AbstractDbMapper;
 use ZfcUser\Mapper\UserInterface;
 use Soliant\SimpleFM\Adapter as DbAdapter;
 

@@ -134,7 +134,7 @@ class User extends AbstractEntity implements UserInterface, ArraySerializableInt
     /**
      * Set id.
      *
-     * @param  int           $id
+     * @param  int $id
      * @return UserInterface
      */
     public function setId($id)
@@ -157,7 +157,7 @@ class User extends AbstractEntity implements UserInterface, ArraySerializableInt
     /**
      * Set username.
      *
-     * @param  string        $username
+     * @param  string $username
      * @return UserInterface
      */
     public function setUsername($username)
@@ -180,7 +180,7 @@ class User extends AbstractEntity implements UserInterface, ArraySerializableInt
     /**
      * Set email.
      *
-     * @param  string        $email
+     * @param  string $email
      * @return UserInterface
      */
     public function setEmail($email)
@@ -203,7 +203,7 @@ class User extends AbstractEntity implements UserInterface, ArraySerializableInt
     /**
      * Set displayName.
      *
-     * @param  string        $displayName
+     * @param  string $displayName
      * @return UserInterface
      */
     public function setDisplayName($displayName)
@@ -226,7 +226,7 @@ class User extends AbstractEntity implements UserInterface, ArraySerializableInt
     /**
      * Set password.
      *
-     * @param  string        $password
+     * @param  string $password
      * @return UserInterface
      */
     public function setPassword($password)
@@ -249,7 +249,7 @@ class User extends AbstractEntity implements UserInterface, ArraySerializableInt
     /**
      * Set state.
      *
-     * @param  int           $state
+     * @param  int $state
      * @return UserInterface
      */
     public function setState($state)

@@ -1,18 +1,19 @@
 <?php
 
-namespace ZfcUserSimpleFM;
-
-use Zend\Validator\InArray;
+namespace Soliant\ZfcUserSimpleFM;
 
 use Zend\ModuleManager\ModuleManager;
-use Zend\EventManager\EventManager;
-use Zend\EventManager\EventManagerInterface;
-use Zend\EventManager\EventManagerAwareInterface;
-use Zend\Mvc\MvcEvent;
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
+use Zend\ModuleManager\Feature\ServiceProviderInterface;
+use Zend\Stdlib\Hydrator\ClassMethods;
 use SimpleFMAuth\Mapper;
 use Soliant\SimpleFM;
 
-class Module implements EventManagerAwareInterface
+class Module implements
+    AutoloaderProviderInterface,
+    ConfigProviderInterface,
+    ServiceProviderInterface
 {
     public function getConfig()
     {

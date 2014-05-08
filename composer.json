@@ -1,6 +1,6 @@
 {
     "name": "soliantconsulting/zfc-user-simplefm",
-    "description": "A SimpleFM user adapter for the FileMaker database",
+    "description": "A SimpleFM ZFC User adapter for the FileMaker database",
     "type": "library",
     "license": "MIT",
     "keywords": [
@@ -10,7 +10,7 @@
     "authors": [
         {
             "name": "Tom Anderson",
-            "email": "tom.h.anderson@gmail.com"
+            "email": "tanderson@soliantconsulting.com"
         }
     ],
     "require": {

@@ -94,17 +94,19 @@ class User extends AbstractEntity implements UserInterface, ArraySerializableInt
     public function getFieldMapWriteable()
     {
         return [
-            'id' => 'id',
             'username' => 'username',
             'email' => 'email',
             'displayName' => 'displayName',
             'password' => 'password',
+            'state' => 'state',
        ];
     }
 
     public function getFieldMapReadOnly()
     {
-        return [];
+        return [
+            'id' => 'id',
+        ];
     }
 
     public function getDefaultWriteLayoutName()

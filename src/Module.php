@@ -42,6 +42,7 @@ class Module implements
         return array(
             'invokables' => array(
                 'zfcuser_register_form_hydrator'    => 'Zend\Stdlib\Hydrator\ArraySerializable',
+                'Soliant\ZfcUserSimpleFM\Authentication\Adapter\SimpleFM' => 'Soliant\ZfcUserSimpleFM\Authentication\Adapter\SimpleFM',
             ),
             'factories' => array(
                 'zfcuser_user_mapper' => function ($sm)

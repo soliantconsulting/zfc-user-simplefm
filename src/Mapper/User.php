@@ -76,20 +76,18 @@ class User extends AbstractGateway implements UserInterface, EventManagerAwareIn
 
     public function findByUsername($username)
     {
-        $select = $this->getSelect()
-                       ->where(array('username' => $username));
+        $entity = $this->findOneBy(array(
+            'username' => $username
+        ));
 
-        $entity = $this->select($select)->current();
         $this->getEventManager()->trigger('find', $this, array('entity' => $entity));
         return $entity;
     }
 
     public function findById($id)
     {
-        $select = $this->getSelect()
-                       ->where(array('user_id' => $id));
+        $entity = $this->find($id);
 
-        $entity = $this->select($select)->current();
         $this->getEventManager()->trigger('find', $this, array('entity' => $entity));
         return $entity;
     }
@@ -107,34 +105,19 @@ class User extends AbstractGateway implements UserInterface, EventManagerAwareIn
     public function insert($entity, $tableName = null, HydratorInterface $hydrator = null)
     {
         $dbAdapter = $this->getDbAdapter();
-        $data = $this->getHydrator()->extract($entity);
 
-        $dbAdapter->setLayoutname($this->getTableName());
-        $dbAdapter->setCommandarray(
-            array(
-                '-max'     => 1,
-                '-skip'    => 5,
-                '-findany' => NULL
-            )
-        );
-
-        print_r(get_class_methods($dbAdapter));die();
-
-        $result = $dbAdapter->execute();
-
-
-        $result = parent::insert($entity, $tableName, $hydrator);
-        $entity->setId($result->getGeneratedValue());
-        return $result;
+        return $this->create($entity);
     }
 
     public function update($entity, $where = null, $tableName = null, HydratorInterface $hydrator = null)
     {
-        if (!$where) {
-            $where = array('user_id' => $entity->getId());
-        }
+        $newEntity = $this->edit($entity);
 
-        return parent::update($entity, $where, $tableName, $hydrator);
+#        if (!$where) {
+#            $where = array('user_id' => $entity->getId());
+#        }
+
+        return $newEntity;
     }
 
     /**

@@ -9,7 +9,7 @@ Configuration
 
 Zend Framework
 --------------
-Add the ```ZfcUserSimpleFM``` to your modules list in ```config/application.config.php``` _after_ ZfcUser.
+Add the ```Soliant/ZfcUserSimpleFM``` to your modules list in ```config/application.config.php``` _after_ ZfcUser.
 
 
 ZfcUser

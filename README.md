@@ -7,6 +7,8 @@ This module provides authentication via SimpleFM to a FileMaker database.
 Configuration
 =============
 
+ZfcUser
+-------
 Your ```zfcuser.global.php``` must have these values:
 
 ```php
@@ -15,3 +17,7 @@ Your ```zfcuser.global.php``` must have these values:
 'table_name' => 'user', // The name of your layout
 ```
 
+SimpleFM
+--------
+
+See the SimpleFM [README.md](https://github.com/soliantconsulting/SimpleFM/blob/master/README.md)

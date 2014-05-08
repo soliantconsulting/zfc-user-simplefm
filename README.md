@@ -7,6 +7,11 @@ This module provides authentication via SimpleFM to a FileMaker database.
 Configuration
 =============
 
+Zend Framework
+--------------
+Add the ```ZfcUserSimpleFM``` to your modules list in ```config/application.config.php``` _after_ ZfcUser.
+
+
 ZfcUser
 -------
 Your ```zfcuser.global.php``` must have these values:

@@ -26,7 +26,8 @@ class User extends AbstractGateway implements UserInterface, EventManagerAwareIn
         // Clear abstract gateway and use in init
     }
 
-    public function init() {
+    public function init()
+    {
         $this->setEntityName(get_class($this->entity));
         $this->setSimpleFMAdapter($this->getDbAdapter());
         $this->setEntityLayout($this->getTableName());
@@ -81,6 +82,7 @@ class User extends AbstractGateway implements UserInterface, EventManagerAwareIn
         ));
 
         $this->getEventManager()->trigger('find', $this, array('entity' => $entity));
+
         return $entity;
     }
 
@@ -89,6 +91,7 @@ class User extends AbstractGateway implements UserInterface, EventManagerAwareIn
         $entity = $this->find($id);
 
         $this->getEventManager()->trigger('find', $this, array('entity' => $entity));
+
         return $entity;
     }
 
@@ -147,6 +150,7 @@ class User extends AbstractGateway implements UserInterface, EventManagerAwareIn
         }
         $events->setIdentifiers($identifiers);
         $this->events = $events;
+
         return $this;
     }
 
@@ -162,6 +166,7 @@ class User extends AbstractGateway implements UserInterface, EventManagerAwareIn
         if (!$this->events instanceof EventManagerInterface) {
             $this->setEventManager(new EventManager());
         }
+
         return $this->events;
     }
 }

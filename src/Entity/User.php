@@ -61,7 +61,7 @@ class User extends AbstractEntity implements UserInterface, ArraySerializableInt
     {
         foreach ($data as $field => $value) {
             $field = strtolower($field);
-            switch($field) {
+            switch ($field) {
                 case 'id':
                     $this->setId($value);
                     break;
@@ -121,7 +121,6 @@ class User extends AbstractEntity implements UserInterface, ArraySerializableInt
         . 'ever');
     }
 
-
     /**
      * Get id.
      *
@@ -135,12 +134,13 @@ class User extends AbstractEntity implements UserInterface, ArraySerializableInt
     /**
      * Set id.
      *
-     * @param int $id
+     * @param  int           $id
      * @return UserInterface
      */
     public function setId($id)
     {
         $this->id = (int) $id;
+
         return $this;
     }
 
@@ -157,12 +157,13 @@ class User extends AbstractEntity implements UserInterface, ArraySerializableInt
     /**
      * Set username.
      *
-     * @param string $username
+     * @param  string        $username
      * @return UserInterface
      */
     public function setUsername($username)
     {
         $this->username = $username;
+
         return $this;
     }
 
@@ -179,12 +180,13 @@ class User extends AbstractEntity implements UserInterface, ArraySerializableInt
     /**
      * Set email.
      *
-     * @param string $email
+     * @param  string        $email
      * @return UserInterface
      */
     public function setEmail($email)
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -201,12 +203,13 @@ class User extends AbstractEntity implements UserInterface, ArraySerializableInt
     /**
      * Set displayName.
      *
-     * @param string $displayName
+     * @param  string        $displayName
      * @return UserInterface
      */
     public function setDisplayName($displayName)
     {
         $this->displayName = $displayName;
+
         return $this;
     }
 
@@ -223,12 +226,13 @@ class User extends AbstractEntity implements UserInterface, ArraySerializableInt
     /**
      * Set password.
      *
-     * @param string $password
+     * @param  string        $password
      * @return UserInterface
      */
     public function setPassword($password)
     {
         $this->password = $password;
+
         return $this;
     }
 
@@ -245,12 +249,13 @@ class User extends AbstractEntity implements UserInterface, ArraySerializableInt
     /**
      * Set state.
      *
-     * @param int $state
+     * @param  int           $state
      * @return UserInterface
      */
     public function setState($state)
     {
         $this->state = $state;
+
         return $this;
     }
 }

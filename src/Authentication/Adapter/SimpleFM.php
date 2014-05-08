@@ -37,7 +37,7 @@ class SimpleFM extends AbstractAdapter implements ChainableAdapter, ServiceManag
     /**
      * Set service manager instance
      *
-     * @param ServiceManager $locator
+     * @param  ServiceManager $locator
      * @return void
      */
     public function setServiceManager(ServiceManager $serviceManager)
@@ -55,6 +55,7 @@ class SimpleFM extends AbstractAdapter implements ChainableAdapter, ServiceManag
         if (!$this->options instanceof AuthenticationOptionsInterface) {
             $this->setOptions($this->getServiceManager()->get('zfcuser_module_options'));
         }
+
         return $this->options;
     }
 
@@ -63,7 +64,6 @@ class SimpleFM extends AbstractAdapter implements ChainableAdapter, ServiceManag
         $this->options = $options;
     }
 
-
     public function authenticate(AdapterChainEvent $e)
     {
         if ($this->isSatisfied()) {
@@ -71,6 +71,7 @@ class SimpleFM extends AbstractAdapter implements ChainableAdapter, ServiceManag
             $e->setIdentity($storage['identity'])
               ->setCode(AuthenticationResult::SUCCESS)
               ->setMessages(array('Authentication successful.'));
+
             return;
         }
 
@@ -96,6 +97,7 @@ class SimpleFM extends AbstractAdapter implements ChainableAdapter, ServiceManag
             $e->setCode(AuthenticationResult::FAILURE_IDENTITY_NOT_FOUND)
               ->setMessages(array('A record with the supplied identity could not be found.'));
             $this->setSatisfied(false);
+
             return false;
         }
 
@@ -105,6 +107,7 @@ class SimpleFM extends AbstractAdapter implements ChainableAdapter, ServiceManag
                 $e->setCode(AuthenticationResult::FAILURE_UNCATEGORIZED)
                   ->setMessages(array('A record with the supplied identity is not active.'));
                 $this->setSatisfied(false);
+
                 return false;
             }
         }
@@ -116,6 +119,7 @@ class SimpleFM extends AbstractAdapter implements ChainableAdapter, ServiceManag
             $e->setCode(AuthenticationResult::FAILURE_CREDENTIAL_INVALID)
               ->setMessages(array('Supplied credential is invalid.'));
             $this->setSatisfied(false);
+
             return false;
         }
 
@@ -143,6 +147,7 @@ class SimpleFM extends AbstractAdapter implements ChainableAdapter, ServiceManag
         }
         $userObject->setPassword($bcrypt->create($password));
         $this->getMapper()->edit($userObject);
+
         return $this;
     }
 

@@ -2,16 +2,9 @@
 
 namespace Soliant\ZfcUserSimpleFM;
 
-use Zend\Validator\InArray;
-
 use Zend\ModuleManager\ModuleManager;
 use Zend\EventManager\EventManager;
-use Zend\EventManager\EventManagerInterface;
-use Zend\EventManager\EventManagerAwareInterface;
-use Zend\Mvc\MvcEvent;
-use Soliant\ZfcUserSimpleFM\Mapper;
 use Soliant\SimpleFM;
-
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
@@ -45,8 +38,7 @@ class Module implements
                 'Soliant\ZfcUserSimpleFM\Authentication\Adapter\SimpleFM' => 'Soliant\ZfcUserSimpleFM\Authentication\Adapter\SimpleFM',
             ),
             'factories' => array(
-                'zfcuser_user_mapper' => function ($sm)
-                {
+                'zfcuser_user_mapper' => function ($sm) {
                     $options = $sm->get('zfcuser_module_options');
                     $mapper = new Mapper\User();
                     $mapper->setDbAdapter($sm->get('simplefm'));
@@ -55,6 +47,7 @@ class Module implements
                     $mapper->setEntityPrototype(new $entityClass);
                     $mapper->setTableName($options->getTableName());
                     $mapper->init(); # work around for constuctor params in ancestor
+
                     return $mapper;
                 },
             ),

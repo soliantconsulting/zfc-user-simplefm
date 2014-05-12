@@ -8,12 +8,18 @@ use Soliant\SimpleFM;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\ModuleManager\Feature\ServiceProviderInterface;
+use Zend\Mvc\MvcEvent;
 
 class Module implements
     AutoloaderProviderInterface,
     ConfigProviderInterface,
     ServiceProviderInterface
 {
+    public function onBootstrap(MvcEvent $e)
+    {
+        $e->getApplication()->getServiceManager()->setAllowOverride(true);
+    }
+
     public function getConfig()
     {
         return include __DIR__ . '/../config/module.config.php';
@@ -33,8 +39,12 @@ class Module implements
     public function getServiceConfig()
     {
         return array(
-            'invokables' => array(
+//            'allow_override' => true,
+            'aliases' => array(
                 'zfcuser_register_form_hydrator'    => 'Zend\Stdlib\Hydrator\ArraySerializable',
+            ),
+            'invokables' => array(
+                'Zend\Stdlib\Hydrator\ArraySerializable' => 'Zend\Stdlib\Hydrator\ArraySerializable',
                 'Soliant\ZfcUserSimpleFM\Authentication\Adapter\SimpleFM' => 'Soliant\ZfcUserSimpleFM\Authentication\Adapter\SimpleFM',
             ),
             'factories' => array(

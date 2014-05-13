@@ -39,7 +39,6 @@ class Module implements
     public function getServiceConfig()
     {
         return array(
-//            'allow_override' => true,
             'aliases' => array(
                 'zfcuser_register_form_hydrator'    => 'Zend\Stdlib\Hydrator\ArraySerializable',
             ),
@@ -48,7 +47,9 @@ class Module implements
                 'Soliant\ZfcUserSimpleFM\Authentication\Adapter\SimpleFM' => 'Soliant\ZfcUserSimpleFM\Authentication\Adapter\SimpleFM',
             ),
             'factories' => array(
-                'zfcuser_user_mapper' => function ($sm) {
+                'zfcuser_user_hydrator' => 'Soliant\ZfcUserSimpleFM\Factory\Mapper\UserHydratorFactory',
+                'zfcuser_user_mapper' => function ($sm)
+                {
                     $options = $sm->get('zfcuser_module_options');
                     $mapper = new Mapper\User();
                     $mapper->setDbAdapter($sm->get('simplefm'));

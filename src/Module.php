@@ -39,10 +39,8 @@ class Module implements
     public function getServiceConfig()
     {
         return array(
-            'aliases' => array(
-                'zfcuser_register_form_hydrator'    => 'Zend\Stdlib\Hydrator\ArraySerializable',
-            ),
             'invokables' => array(
+                'zfcuser_register_form_hydrator'    => 'Zend\Stdlib\Hydrator\ArraySerializable',
                 'Zend\Stdlib\Hydrator\ArraySerializable' => 'Zend\Stdlib\Hydrator\ArraySerializable',
                 'Soliant\ZfcUserSimpleFM\Authentication\Adapter\SimpleFM' => 'Soliant\ZfcUserSimpleFM\Authentication\Adapter\SimpleFM',
             ),

@@ -16,6 +16,11 @@ class User extends AbstractEntity implements UserInterface, ArraySerializableInt
     }
 
     /**
+     * For SimpleFM; id
+     */
+    protected $recid;
+
+    /**
      * @var int
      */
     protected $id;
@@ -64,6 +69,10 @@ class User extends AbstractEntity implements UserInterface, ArraySerializableInt
             switch ($field) {
                 case 'id':
                     $this->setId($value);
+                    break;
+
+                case 'recid':
+                    $this->setRecId($value);
                     break;
 
                 case 'username':
